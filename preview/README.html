@@ -1,0 +1,367 @@
+<html>
+  <head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>i5ting_ztree_toc:README</title>
+		<link href="toc/style/github-bf51422f4bb36427d391e4b75a1daa083c2d840e.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/style/github2-d731afd4f624c99a4b19ad69f3083cd6d02b81d5.css" media="all" rel="stylesheet" type="text/css"/>
+		<link href="toc/css/zTreeStyle/zTreeStyle.css" media="all" rel="stylesheet" type="text/css"/>
+	  <style>
+		pre {
+		    counter-reset: line-numbering;
+		    border: solid 1px #d9d9d9;
+		    border-radius: 0;
+		    background: #fff;
+		    padding: 0;
+		    line-height: 23px;
+		    margin-bottom: 30px;
+		    white-space: pre;
+		    overflow-x: auto;
+		    word-break: inherit;
+		    word-wrap: inherit;
+		}
+
+		pre a::before {
+		  content: counter(line-numbering);
+		  counter-increment: line-numbering;
+		  padding-right: 1em; /* space after numbers */
+		  width: 25px;
+		  text-align: right;
+		  opacity: 0.7;
+		  display: inline-block;
+		  color: #aaa;
+		  background: #eee;
+		  margin-right: 16px;
+		  padding: 2px 10px;
+		  font-size: 13px;
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		  -khtml-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		}
+
+		pre a:first-of-type::before {
+		  padding-top: 10px;
+		}
+
+		pre a:last-of-type::before {
+		  padding-bottom: 10px;
+		}
+
+		pre a:only-of-type::before {
+		  padding: 10px;
+		}
+
+		.highlight { background-color: #ffffcc } /* RIGHT */
+		</style>
+  </head>
+  <body>
+	  <div>
+				<div style='width:25%;'>
+						<ul id="tree" class="ztree" style='width:100%'>
+
+						</ul>
+				</div>
+        <div id='readme' style='width:70%;margin-left:20%;'>
+          	<article class='markdown-body'>
+            	<h2 id="-">流行框架第二天</h2>
+<h3 id="-mvc">复习MVC</h3>
+<ul>
+<li>MVC是一种设计思想,它是约定了程序的结构应该是怎么。</li>
+<li>每一个组成原件都会有一个明确的职责。</li>
+<li>提高代码的结构和可维护性;<h3 id="-mvc">前端的mvc</h3>
+</li>
+</ul>
+<h2 id="mvvm">mvvm</h2>
+<p>mv*</p>
+<h3 id="-scope">$scope</h3>
+<p><img src="./pic/angular-mvvm.png" alt="$scope"></p>
+<h3 id="viewmodel">ViewModel</h3>
+<ul>
+<li>$scope 实际上就是MVVM中所谓的VM（视图模型）</li>
+<li>正是因为$scope在Angular中大量使用甚至盖过了C（控制器）的概念，所以很多人把Angular称之为MVVM框架<h2 id="angular-api-">Angular全局Api使用</h2>
+</li>
+<li>数据比较API <ul>
+<li>angular.isArray()    判断给定的对象是否为数组。</li>
+<li>angular.isDate()    判断给定的对象是否为日期类型。</li>
+<li>angular.isDefined()    判断给定的对象是否定义过。</li>
+<li>angular.isElement()    判断给定的对象是否为一个DOM元素。</li>
+<li>angular.isFunction()    判断给定的对象是否为一个函数。</li>
+<li>angular.isNumber()    判断给定的对象是否为数字。</li>
+<li>angular.isObject()    判断给定的对象是否为object类型。</li>
+<li>angular.isString()    判断给定的对象是否为字符串。</li>
+<li>angular.isUndefined()    判断给定的对象是否没有定义过（与angular.isDefined()相反）。</li>
+<li>angular.equals()    判断给定的两个对象是否相等。<ul>
+<li>其他API使用</li>
+</ul>
+</li>
+<li>angular.lowercase()    将字符串转换为小写形式。</li>
+<li>angular.uppercase()    将字符串转换为大写形式。</li>
+<li>angular.copy()    深拷贝一个对象或数组。</li>
+<li>angular.forEach()    遍历对象或数组中的每一个元素并执行一个函数。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-javascript">
+    var values = {name: &#39;feifei&#39;, gender: &#39;zhuzhu&#39;};
+    angular.forEach(values, function(value, key) {
+    });
+
+    var objs =[1,2];
+    angular.forEach(objs, function(data,index,array){
+        console.log(data);
+        console.log(index);
+        console.log(array);
+    });
+</code></pre>
+<h2 id="-">模块</h2>
+<h3 id="-">控制器的作用</h3>
+<pre><code>- 初始化属性
+- 暴露属性或者行为
+- 监视数据变化 
+  $scope.name=&#39;&#39;;
+    $scope.$watch(&#39;name&#39;,function (newVal,oldVal) {
+        console.log(newVal);
+        console.log(oldVal);
+    })
+</code></pre><h3 id="-">控制器代码压缩问题</h3>
+<pre><code>- 当代码进行js压缩时候controller里面的内容会被当成变量替换掉，
+为了防止这个问题发生在controller中出现 controller(&#39;myCtrl&#39;,[&#39;$scop&#39;,function($scope){}])
+</code></pre><h3 id="-">控制器的多种写法</h3>
+<ul>
+<li>1.简单写法
+ app.controller(&#39;myCtrl&#39;,function(){}) </li>
+<li>2.早期使用 （angular-1.2.29版本）
+function  myController($scope) {<pre><code>$scope.name=&quot;angular早期使用&quot;;
+</code></pre>}   </li>
+<li><ol>
+<li>fuction写在外面（写在外面不能被压缩）
+function otherCtrl($scope) {
+ $scope.name=&#39;123&#39;;
+}
+app.controller(&#39;myCtrl&#39;,otherCtrl)</li>
+<li><ol>
+<li>fuction写在外面（写在外面不能被压缩）
+function otherCtrl(otherscope) {
+otherscope.name=&#39;123&#39;;
+}
+//依赖注入
+otherCtrl.$inject=[&#39;$scope&#39;];//这里对方法添加$inject
+app.controller(&#39;myCtrl&#39;,otherCtrl)</li>
+</ol>
+</li>
+<li><ol>
+<li>面向对象方法使用<div ng-controller="myCtrl as scope">
+{{scope.name}}
+</div></li>
+</ol>
+</li>
+<li>1.控制器的function不写改为引用function app.controller(&#39;myCtrl&#39;,demoCtrl);</li>
+<li>2.创建一个面向对象的function ` function demoCtrl() {<pre><code>  this.name=&#39;123&#39;;
+</code></pre>  } `</li>
+<li>3.使用的时候添加 <code>as scope</code> ng-controller=&quot;myCtrl as scope&quot;
+#依赖注入 </li>
+<li>没事你不要来找我，有事我会去找你。</li>
+<li>原理
+框架在调用方法的过程中通过获取到传递的参数，然后框架内部将方法toString处理以后，
+再通过正则表达式将其获取到然后依次实例化。
+###控制器继承
+<div ng-app="mainApp">
+<div ng-controller="ParentCtrl">                <!--父级-->
+<div ng-controller="SelfCtrl">              <!--自己-->
+</div>
+</div>
+</div>
+<script>
+var app=angular.module(&#39;mainApp&#39;,[]);
+app.controller(&#39;SelfCtrl&#39;, function($scope) {
+$scope.foo();
+});
+app.controller(&#39;ParentCtrl&#39;, function($scope) {
+  $scope.foo=function(){<pre><code>  console.log(123);
+</code></pre>  }
+});
+</script>
+###控制器之间父子通信
+1.从父控制器传子控制器
+<div ng-controller="SelfCtrl">              <!--自己-->
+  <a ng-click="click()">click me</a>
+  <div ng-controller="ChildCtrl"></div>   <!--子级-->
+</div>
+<script>
+var app=angular.module(&#39;mainApp&#39;,[]);
+app.controller(&#39;SelfCtrl&#39;, function($scope) {
+$scope.click = function () {
+  //$broadcast广播to-child事件的名称
+  $scope.$broadcast(&#39;to-child&#39;, &#39;child 呵呵~~~&#39;);
+}
+});
+app.controller(&#39;ChildCtrl&#39;, function($scope){
+$scope.$on(&#39;to-child&#39;, function(event,data) {
+  console.log(data);         //子级能得到值
+});
+});
+2.从子控制器传父控制器
+<div ng-controller="ParentCtrl">                <!--父级-->
+<div ng-controller="SelfCtrl">              <!--自己-->
+  <a ng-click="click()">click me</a>
+</div>
+</div><br>var app=angular.module(&#39;mainApp&#39;,[]);
+app.controller(&#39;SelfCtrl&#39;, function($scope) {
+$scope.click = function () {
+  //$emit事件发射器to-parent是事件的名称  parent是传的内容
+  $scope.$emit(&#39;to-parent&#39;, &#39;parent&#39;);
+}
+});
+app.controller(&#39;ParentCtrl&#39;, function($scope) {
+$scope.$on(&#39;to-parent&#39;, function(event,data) {
+   console.log( data);
+});
+});<h3 id="-">指令</h3>
+</li>
+<li>在 AngularJS 中将前缀为 ng- 这种属性称之为指令，其作用就是为 DOM 元素调用方法、定义行为绑定数据等</li>
+<li>简单说：当一个 Angular 应用启动，Angular 就会遍历 DOM 树来解析 HTML，根据指令不同，完成不同操作</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>ng-bind </p>
+<ul>
+<li>用来解决表达式闪烁问题</li>
+<li><p><code>&lt;p ng-bind=&quot;数据模型&quot;&gt;&lt;/p&gt;替代了{{数据模型}}</code> </p>
+<p> {{name}}  <p ng-bind="name"></p></p>
+<p><em>注意：只能够在双标签中使用ng-bind指令</em></p>
+</li>
+</ul>
+</li>
+<li><p>ng-cloak</p>
+<ul>
+<li>用来解决表达式闪烁问题</li>
+<li>写一个样式使页面的元素隐藏<style>
+  .ng-cloak{
+      display: none;
+  }
+</style></li>
+<li><code>&lt;p class=&quot;ng-cloak&quot;&gt;{{name}}&lt;/p&gt;</code></li>
+<li>利用angular在加载会移除页面上所以名为ng-cloak的样式名的特性。</li>
+</ul>
+</li>
+<li>页面安全的问题
+ 直接编写一些  <script>
+      document.write('<script>alert("");<\/script>')
+  </script></li>
+<li>ngSanitize模块<pre><code>`npm install angular-sanitize`
+</code></pre><ul>
+<li>在module的中括号中添加ngSanitize
+var app = angular.module(&#39;myApp&#39;,[&#39;ngSanitize&#39;]);</li>
+<li>使用的是ng-bind-html指令来渲染数据模型。
+<p ng-bind-html="name"></p>
++给name赋值
+app.controller(&#39;demoController&#39;,[&#39;$scope&#39;,function($scope){
+  $scope.name=&#39;<div>123</div>&#39;
+}]);</li>
+</ul>
+</li>
+<li><p>ng-repeat</p>
+<ul>
+<li>可以用来循环输出数组</li>
+<li>写在哪个元素上就是循环哪个元素。</li>
+<li><p>语法：类似于forin 循环</p>
+<blockquote>
+<p><code>&lt;div ng-repeat=&quot;item in data &quot;&gt;{{item}}&lt;/div&gt;</code></p>
+</blockquote>
+</li>
+<li><p>还可以用来渲染key,value对</p>
+</li>
+<li>ng-repeat 在遍历里会暴露一些数据模型,<ul>
+<li>$even:提供了一个布尔值，当为true时表示当前数据是第偶数条数据,从索引0开始计算</li>
+<li>$odd:提供了一个布尔值，当为true时表示当前数据是第奇数条数据,从索引0开始计算
+<li ng-repeat="item in data" class="{{ $odd?'red':'blue' }}"><pre><code>  {{item.name}},{{item.age}}
+</code></pre></li>
+ng-class: </li>
+</ul>
+</li>
+<li>从多种样式中选择一个样式<ul>
+<li>语法：类似于从一个key,value对象中获取其中一个属性的值</li>
+<li>ng-class=&quot;{&#39;A&#39;:&#39;red&#39;,&#39;B&#39;:&#39;blue&#39;,&#39;C&#39;:&#39;green&#39;}[]&quot;
+通过item.salary里面值的不同显示不同的颜色<li ng-class="{'A':'red','B':'blue','C':'green'}[item.salary]"
+           ng-repeat="item in data">
+          {{item.name}},{{item.age}},{{item.salary}}
+</li></li>
+</ul>
+</li>
+<li>从多种样式中选择多个<ul>
+<li>语法：也是写一个key,value对象，这里的key是我们提供的类样式名，value是一个布尔值，为true时对应的key会被作为样式名加入到class中</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>ng-hide/ng-show</p>
+<ul>
+<li>ng-hide：需要一个布尔值：当为true时为隐藏当前元素</li>
+<li>ng-show: 需要一个布尔值：当为true时为显示当前元素
+ &lt;li  ng-show=&quot;item.salary!=&#39;B&#39;&quot;<pre><code>           ng-class=&quot;{&#39;A&#39;:&#39;red&#39;,&#39;B&#39;:&#39;blue&#39;,&#39;C&#39;:&#39;green&#39;}[item.salary]&quot;
+               ng-repeat=&quot;item in data&quot;&gt;
+              {{item.name}},{{item.age}},{{item.salary}}
+          &lt;/li&gt;
+</code></pre>ng-switch:与ng-switch-when同用，类似与js中的switch case</li>
+</ul>
+<pre><code class="lang-html">    &lt;div ng-switch=&quot;name&quot;&gt;
+            &lt;div ng-switch-when=&quot;小明&quot;&gt;我是小明&lt;/div&gt;
+            &lt;div ng-switch-when=&quot;小红&quot;&gt;我是小红&lt;/div&gt;
+            &lt;div ng-switch-when=&quot;小月&quot;&gt;我是小月&lt;/div&gt;
+    &lt;/div&gt;
+</code></pre>
+<h3 id="-">其他常用指令</h3>
+<ul>
+<li>ng-checked： <ul>
+<li>单选/复选是否选中,是单向数据绑定</li>
+</ul>
+</li>
+<li>ng-selected：<ul>
+<li>是否选中</li>
+</ul>
+</li>
+<li>ng-disabled：<ul>
+<li>是否禁用</li>
+</ul>
+</li>
+<li>ng-readonly：<ul>
+<li>是否只读</li>
+</ul>
+</li>
+</ul>
+<h3 id="-">常用事件指令</h3>
+<p>不同于以上的功能性指令，Angular还定义了一些用于和事件绑定的指令：</p>
+<ul>
+<li>ng-blur：失去焦点</li>
+<li>ng-focus：获得焦点</li>
+<li>ng-change：改变事件 </li>
+<li>ng-click： ng-click=&quot;add()&quot;</li>
+<li>ng-dblclick：双击事件</li>
+<li>ng-submit： 表单提交事件</li>
+</ul>
+
+          	</article>
+        </div>
+		</div>
+  </body>
+</html>
+<script type="text/javascript" src="toc/js/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="toc/js/jquery.ztree.all-3.5.min.js"></script>
+<script type="text/javascript" src="toc/js/ztree_toc.js"></script>
+<script type="text/javascript" src="toc_conf.js"></script>
+
+<SCRIPT type="text/javascript" >
+<!--
+$(document).ready(function(){
+    var css_conf = eval(markdown_panel_style);
+    $('#readme').css(css_conf)
+    
+    var conf = eval(jquery_ztree_toc_opts);
+		$('#tree').ztree_toc(conf);
+});
+//-->
+</SCRIPT>
